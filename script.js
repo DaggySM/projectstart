@@ -52,8 +52,31 @@ const personalMovieDB = {
     },
     writeYourGenres: function() {
         for(let i = 1; i <= 3; i++) {
-            personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`); // для пользователя выводим с 1 а для базы нужно указать с нуля. (нумерация в массиве с нуля)
+            let genre = prompt(`Ваш любимый жанр под номером ${i}`);
+
+            if (genre === '' || genre == null) {
+                console.log('Вы ввели некорректные данные или не ввели их вовсе');
+                i--;
+            } else {
+                personalMovieDB.genres[i - 1] =  genre;
+            }
+
+            // Альтернативный вариант из урока
+            
+            // let genres = prompt(`Введите ваши любимые жанры через запятую`).toLowerCase();
+
+            // if (genres === '' || genres == null) {
+            //     console.log('Вы ввели некорректные данные или не ввели их вовсе');
+            //     i--;
+            // } else {
+            //     personalMovieDB.genres = genres.split(', ');
+            //     personalMovieDB.genres.sort();
+            // } 
         }
+
+        personalMovieDB.genres.forEach((item, i) => {
+            console.log(`Любимый жанр ${i + 1} - это ${item}`)
+        });
     }
 };
 
